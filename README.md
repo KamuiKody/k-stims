@@ -1,5 +1,5 @@
 # D2D-Stims
-4 Items intended for PvP (fragging servers) but can definately be brought into RP.
+4 Items intended for PvP (fragging servers) but can definitely be brought into RP.
 
 > - Adrenaline: Gives you 100% health.
 > - Meldonin: Gives you unlimited stamina and super sprint speed.
