@@ -2,7 +2,7 @@ fx_version 'adamant'
 
 game 'gta5'
 
-description 'Stim Shots for ESX'
+description 'Stim Shots for ESX/ qbcore conversion by kamui kody'
 
 author 'DareToDoyle'
 
