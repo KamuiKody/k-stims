@@ -8,15 +8,16 @@ local meldoninEffects = false
 -- Effect Functions (You can play around with this if you know what you're doing)
 local function melLoop()
     CreateThread(function()
+		local player = PlayerId()
         while true do
             Wait(50)
             if meldoninEffects then
-                SetPedMoveRateOverride(PlayerId(),10.0)
-                SetRunSprintMultiplierForPlayer(PlayerId(),1.49)
-                RestorePlayerStamina(PlayerId(), 1.0)
+                SetPedMoveRateOverride(player,7.0)
+                SetRunSprintMultiplierForPlayer(player,1.25)
+                RestorePlayerStamina(player, 1.0)
             elseif not meldoninEffects then
-                SetPedMoveRateOverride(PlayerId(),1.0)
-                SetRunSprintMultiplierForPlayer(PlayerId(),1.0)
+                SetPedMoveRateOverride(player,1.0)
+                SetRunSprintMultiplierForPlayer(player,1.0)
                 break
             end
         end
