@@ -8,6 +8,8 @@ author 'DareToDoyle'
 
 ui_page "ui/index.html"
 
+shared_script 'config.lua'
+
 files {
 	"ui/index.html",
 	"ui/sounds/*.ogg",

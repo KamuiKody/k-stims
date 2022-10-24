@@ -5,6 +5,66 @@ local QBCore = exports['qb-core']:GetCoreObject()
 local ketEffects = false
 local meldoninEffects = false
 
+-- Effect Functions (You can play around with this if you know what you're doing)
+local function melLoop()
+	CreateThread(function()
+		while true do
+			Wait(50)
+			if meldoninEffects then
+				SetPedMoveRateOverride(PlayerId(),10.0)
+				SetRunSprintMultiplierForPlayer(PlayerId(),1.49)
+				RestorePlayerStamina(PlayerId(), 1.0)
+			elseif not meldoninEffects then
+				SetPedMoveRateOverride(PlayerId(),1.0)
+				SetRunSprintMultiplierForPlayer(PlayerId(),1.0)
+				break
+			end
+		end
+	end)
+end
+
+local function ketLoop()
+	CreateThread(function()
+		local ped = PlayerPedId()
+		while true do
+			Wait(50)
+			if ketEffectsthen
+				RequestAnimSet("MOVE_M@DRUNK@VERYDRUNK")
+				SetPedMovementClipset(ped, "MOVE_M@DRUNK@VERYDRUNK", 1.0)
+			elseif not ketEffects then
+				ResetPedMovementClipset(ped)
+				ResetPedWeaponMovementClipset(ped)
+				ResetPedStrafeClipset(ped)
+				break
+			end
+		end
+	end)
+end
+
+local function discoLoop()
+	CreateThread(function()
+		while true do
+			Wait(0)
+			if disco then
+				AnimpostfxPlay("PPOrange", 0, false)
+				Wait(600)
+				AnimpostfxStopAll()
+				AnimpostfxPlay("PPGreen", 0, false)
+				Wait(600)
+				AnimpostfxStopAll()
+				AnimpostfxPlay("PPPink", 0, false)
+				Wait(600)
+				AnimpostfxStopAll()
+				AnimpostfxPlay("PPPurple", 0, false)
+				Wait(600)
+				AnimpostfxStopAll()
+			elseif not disco then
+				break
+			end
+		end
+	end)
+end
+
 local function Adrenaline()
 	QBCore.Functions.Notify('Adrenaline Stimulant has been taken!')
 	AnimpostfxPlay("SuccessFranklin", 0, false)
@@ -17,6 +77,7 @@ local function Meldonin()
 	QBCore.Functions.Notify('Meldonin Stimulant has been taken!')
 	AnimpostfxPlay("SuccessFranklin", 0, false)
 	meldoninEffects = true
+	melLoop()
     ShakeGameplayCam("DRUNK_SHAKE", 0.3)
 	AnimpostfxStopAll()
 end
@@ -37,7 +98,27 @@ local function Ketamine()
 	ShakeGameplayCam("DRUNK_SHAKE", 0.3)
 	ketEffects = true
 	disco = true
+	ketLoop()
+	discoLoop()
 end
+
+-------------
+
+local function munchies()
+	for i = 1,Config.Needs['hunger'] do
+		Wait(Config.Needs['refresh'])
+		TriggerServerEvent("consumables:server:addHunger", QBCore.Functions.GetPlayerData().metadata["hunger"] - Config.Needs['reduction'].hunger)
+	end
+end
+
+local function cottonMouth()
+	for i = 1,Config.Needs['thirst'] do
+		Wait(Config.Needs['refresh'])
+		TriggerServerEvent("consumables:server:addThirst", QBCore.Functions.GetPlayerData().metadata["thirst"] - Config.Needs['reduction'].thirst)
+	end
+end
+
+----------- Events
 
 RegisterNetEvent('QBCore:Client:UpdateObject', function()
 	QBCore = exports['qb-core']:GetCoreObject()
@@ -72,59 +153,10 @@ RegisterNetEvent('D2D-Stims:stimit', function(item)
 	QBCore.Functions.Notify('The effects of the Adrenaline Stimulant have now gone.')
 	ShakeGameplayCam("DRUNK_SHAKE", 0.0)
 	AnimpostfxStopAll()
-end)
-
-
-
--- Effect Functions (You can play around with this if you know what you're doing)
-
-CreateThread(function()
-    while true do
-        Wait(50)
-        if meldoninEffects == true then
-        	SetPedMoveRateOverride(PlayerId(),10.0)
-            SetRunSprintMultiplierForPlayer(PlayerId(),1.49)
-			RestorePlayerStamina(PlayerId(), 1.0)
-        elseif meldoninEffects == false then
-        	SetPedMoveRateOverride(PlayerId(),1.0)
-            SetRunSprintMultiplierForPlayer(PlayerId(),1.0)
-        end
-    end
-end)
-
-CreateThread(function()
-	local ped = PlayerPedId()
-    while true do
-        Wait(50)
-        if ketEffects == true then
-        	RequestAnimSet("MOVE_M@DRUNK@VERYDRUNK")
-	        SetPedMovementClipset(ped, "MOVE_M@DRUNK@VERYDRUNK", 1.0)
-        elseif ketEffects == false then
-        	ResetPedMovementClipset(ped)
-	        ResetPedWeaponMovementClipset(ped)
-	        ResetPedStrafeClipset(ped)
-        end
-    end
-end)
-
-CreateThread(function()
-    while true do
-        Wait(0)
-        if disco == true then
-        	AnimpostfxPlay("PPOrange", 0, false)
-			Wait(600)
-			AnimpostfxStopAll()
-            AnimpostfxPlay("PPGreen", 0, false)
-			Wait(600)
-			AnimpostfxStopAll()
-			AnimpostfxPlay("PPPink", 0, false)
-			Wait(600)
-			AnimpostfxStopAll()
-			AnimpostfxPlay("PPPurple", 0, false)
-			Wait(600)
-			AnimpostfxStopAll()
-	    elseif disco == false then
-		
-        end
-    end
+	if Config.Needs['thirst'] then
+		cottonMouth()
+	end
+	if Config.Needs['hunger'] then
+		munchies()
+	end
 end)
