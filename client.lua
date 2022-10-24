@@ -4,8 +4,23 @@ local QBCore = exports['qb-core']:GetCoreObject()
 
 local ketEffects = false
 local meldoninEffects = false
+local sj6Effects = false
 
 -- Effect Functions (You can play around with this if you know what you're doing)
+local function sj6Loop()
+    CreateThread(function()
+		local player = PlayerId()
+        while true do
+            Wait(50)
+            if sj6Effects then
+                RestorePlayerStamina(player, 1.0)
+            elseif not sj6Effects then
+                break
+            end
+        end
+    end)
+end
+
 local function melLoop()
     CreateThread(function()
 		local player = PlayerId()
@@ -13,7 +28,7 @@ local function melLoop()
             Wait(50)
             if meldoninEffects then
                 SetPedMoveRateOverride(player,7.0)
-                SetRunSprintMultiplierForPlayer(player,1.25)
+                SetRunSprintMultiplierForPlayer(player,1.30)
                 RestorePlayerStamina(player, 1.0)
             elseif not meldoninEffects then
                 SetPedMoveRateOverride(player,1.0)
@@ -72,6 +87,15 @@ local function Adrenaline()
     ShakeGameplayCam("DRUNK_SHAKE", 0.3)
     AnimpostfxStopAll()
     SetEntityHealth(player, GetEntityMaxHealth(player))
+end
+
+local function sj6()
+    QBCore.Functions.Notify('SJ-6 Stimulant has been taken!')
+    AnimpostfxPlay("SuccessFranklin", 0, false)
+    sj6Effects = true
+    sj6Loop()
+    ShakeGameplayCam("DRUNK_SHAKE", 0.3)
+    AnimpostfxStopAll()
 end
 
 local function Meldonin()
@@ -145,9 +169,13 @@ RegisterNetEvent('D2D-Stims:stimit', function(item)
         Meldonin()
     elseif item == 'ketamine' then
         Ketamine()
+	elseif item == 'sj6' then
+		sj6()
+		Wait(95000)
     end
     Wait(25000) -- HOW LONG THE EFFECT LASTS (25 seconds)
     meldoninEffects = false
+	sj6Effects = false
     disco = false
     ketEffects = false
     SendNUIMessage({sound = "heartbeat", volume = 0.6}) 

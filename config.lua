@@ -3,10 +3,10 @@ Config = {}
 Config.Needs = {
     ['hunger'] = math.random(5,10), -- other option is false
     ['thirst'] = math.random(5,10), -- other option is false
-    ['refresh'] = 45,
+    ['refresh'] = 60,
     ['reduction'] = {
-        hunger = math.random(5,10),
-        thirst = math.random(7,14)
+        hunger = math.random(1,3),
+        thirst = math.random(2,5)
     }
 }
 
@@ -15,4 +15,5 @@ Config.Items = {
     ['anesthetic']                = {['name'] = 'anesthetic',             ['label'] = 'Anesthetic Shot',   ['weight'] = 100,         ['type'] = 'item',         ['image'] = 'anesthetic.png',       ['unique'] = true,     ['useable'] = true,     ['shouldClose'] = true,  ['combinable'] = nil,   ['description'] = ''},
     ['meldonin']                  = {['name'] = 'meldonin',               ['label'] = 'Meldonin Shot',     ['weight'] = 100,         ['type'] = 'item',         ['image'] = 'meldonin.png',         ['unique'] = true,     ['useable'] = true,     ['shouldClose'] = true,  ['combinable'] = nil,   ['description'] = ''},
     ['adrenaline']                = {['name'] = 'adrenaline',             ['label'] = 'Adrenaline Shot',   ['weight'] = 100,         ['type'] = 'item',         ['image'] = 'adrenaline.png',       ['unique'] = true,     ['useable'] = true,     ['shouldClose'] = true,  ['combinable'] = nil,   ['description'] = ''},
+    ['sj6']                       = {['name'] = 'sj6',                    ['label'] = 'SJ-6 Shot',         ['weight'] = 100,         ['type'] = 'item',         ['image'] = 'sj6.png',              ['unique'] = true,     ['useable'] = true,     ['shouldClose'] = true,  ['combinable'] = nil,   ['description'] = ''},
 }
