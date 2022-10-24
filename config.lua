@@ -11,8 +11,8 @@ Config.Needs = {
 }
 
 Config.Items = {
-    ['ketamine'] 				 = {['name'] = 'ketamine', 			 	['label'] = 'Ketamine Shot', 	['weight'] = 100, 		['type'] = 'item', 		['image'] = 'ketamine.png', 		['unique'] = true, 	['useable'] = true, 	['shouldClose'] = true,  ['combinable'] = nil,   ['description'] = ''},
-	['anesthetic'] 				 = {['name'] = 'anesthetic', 			['label'] = 'Anesthetic Shot', 	['weight'] = 100, 		['type'] = 'item', 		['image'] = 'anesthetic.png', 		['unique'] = true, 	['useable'] = true, 	['shouldClose'] = true,  ['combinable'] = nil,   ['description'] = ''},
-	['meldonin'] 				 = {['name'] = 'meldonin', 			  	['label'] = 'Meldonin Shot', 	['weight'] = 100, 		['type'] = 'item', 		['image'] = 'meldonin.png', 		['unique'] = true, 	['useable'] = true, 	['shouldClose'] = true,	 ['combinable'] = nil,   ['description'] = ''},
-	['adrenaline'] 				 = {['name'] = 'adrenaline', 			['label'] = 'Adrenaline Shot', 	['weight'] = 100, 		['type'] = 'item', 		['image'] = 'adrenaline.png', 		['unique'] = true, 	['useable'] = true, 	['shouldClose'] = true,	 ['combinable'] = nil,   ['description'] = ''},
+    ['ketamine']                  = {['name'] = 'ketamine',               ['label'] = 'Ketamine Shot',     ['weight'] = 100,         ['type'] = 'item',         ['image'] = 'ketamine.png',         ['unique'] = true,     ['useable'] = true,     ['shouldClose'] = true,  ['combinable'] = nil,   ['description'] = ''},
+    ['anesthetic']                = {['name'] = 'anesthetic',             ['label'] = 'Anesthetic Shot',   ['weight'] = 100,         ['type'] = 'item',         ['image'] = 'anesthetic.png',       ['unique'] = true,     ['useable'] = true,     ['shouldClose'] = true,  ['combinable'] = nil,   ['description'] = ''},
+    ['meldonin']                  = {['name'] = 'meldonin',               ['label'] = 'Meldonin Shot',     ['weight'] = 100,         ['type'] = 'item',         ['image'] = 'meldonin.png',         ['unique'] = true,     ['useable'] = true,     ['shouldClose'] = true,  ['combinable'] = nil,   ['description'] = ''},
+    ['adrenaline']                = {['name'] = 'adrenaline',             ['label'] = 'Adrenaline Shot',   ['weight'] = 100,         ['type'] = 'item',         ['image'] = 'adrenaline.png',       ['unique'] = true,     ['useable'] = true,     ['shouldClose'] = true,  ['combinable'] = nil,   ['description'] = ''},
 }

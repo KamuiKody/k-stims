@@ -3,13 +3,13 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
 RegisterNetEvent('QBCore:Server:UpdateObject', function()
-	if source ~= '' then return false end
-	QBCore = exports['qb-core']:GetCoreObject()
+    if source ~= '' then return false end
+    QBCore = exports['qb-core']:GetCoreObject()
 end)
 
 AddEventHandler('onResourceStart', function(resource)
     if GetCurrentResourceName() ~= resource then return end
-    for k,v in pairs(Config.Items) do		
+    for k,v in pairs(Config.Items) do
         exports['qb-core']:AddItem(k,v)
     end
     TriggerClientEvent('QBCore:Client:UpdateObject', -1)
