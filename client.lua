@@ -28,7 +28,7 @@ local function ketLoop()
         local ped = PlayerPedId()
         while true do
             Wait(50)
-            if ketEffectsthen
+            if ketEffects then
                 RequestAnimSet("MOVE_M@DRUNK@VERYDRUNK")
                 SetPedMovementClipset(ped, "MOVE_M@DRUNK@VERYDRUNK", 1.0)
             elseif not ketEffects then
