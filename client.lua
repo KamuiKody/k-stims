@@ -82,6 +82,7 @@ local function discoLoop()
 end
 
 local function Adrenaline()
+    local player = PlayerPedId()
     QBCore.Functions.Notify('Adrenaline Stimulant has been taken!')
     AnimpostfxPlay("SuccessFranklin", 0, false)
     ShakeGameplayCam("DRUNK_SHAKE", 0.3)
@@ -108,6 +109,7 @@ local function Meldonin()
 end
 
 local function Anesthetic()
+    local player = PlayerPedId()
     QBCore.Functions.Notify('Anesthetic Stimulant has been taken!')
     AnimpostfxPlay("SuccessFranklin", 0, false)
     ShakeGameplayCam("DRUNK_SHAKE", 0.3)
