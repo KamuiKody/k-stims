@@ -9,7 +9,7 @@ local sj6Effects = false
 -- Effect Functions (You can play around with this if you know what you're doing)
 local function sj6Loop()
     CreateThread(function()
-		local player = PlayerId()
+	local player = PlayerId()
         while true do
             Wait(50)
             if sj6Effects then
@@ -23,7 +23,7 @@ end
 
 local function melLoop()
     CreateThread(function()
-		local player = PlayerId()
+	local player = PlayerId()
         while true do
             Wait(50)
             if meldoninEffects then
@@ -81,6 +81,22 @@ local function discoLoop()
     end)
 end
 
+local function MorphineLoop()
+    CreateThread(function()
+        local player = PlayerPedId()
+        local morphine = 5
+        while true do
+	    Wait(5000)
+	    if morphine > 0 then
+	        morphine = morphine - 1
+                SetEntityHealth(player, GetEntityMaxHealth(player) + 5)
+	    else
+	        break
+	    end
+	end
+    end)
+end
+
 local function Adrenaline()
     local player = PlayerPedId()
     QBCore.Functions.Notify('Adrenaline Stimulant has been taken!')
@@ -134,8 +150,8 @@ local function Morphine()
     QBCore.Functions.Notify('Morphine has been taken!')
     AnimpostfxPlay("SuccessFranklin", 0, false)
     ShakeGameplayCam("DRUNK_SHAKE", 0.3)
-    SetPedArmour(player, 100)
-    SetEntityHealth(player, 25)
+    exports['qb-ambulancejob']:PainKillerLoop(5)
+    MorphineLoop()
 end
 
 -------------
@@ -182,8 +198,8 @@ RegisterNetEvent('D2D-Stims:stimit', function(item)
         Ketamine()
     elseif item == 'morphine' then
         morphine()
-	elseif item == 'sj6' then
-		sj6()
+    elseif item == 'sj6' then
+	sj6()
         Wait(95000)
     end
     Wait(25000) -- HOW LONG THE EFFECT LASTS (25 seconds)
