@@ -129,6 +129,15 @@ local function Ketamine()
     discoLoop()
 end
 
+local function Morphine()
+    Wait(500) 
+    QBCore.Functions.Notify('Morphine has been taken!')
+    AnimpostfxPlay("SuccessFranklin", 0, false)
+    ShakeGameplayCam("DRUNK_SHAKE", 0.3)
+    SetPedArmour(player, 100)
+    SetEntityHealth(player, 25)
+end
+
 -------------
 
 local function munchies()
@@ -171,9 +180,11 @@ RegisterNetEvent('D2D-Stims:stimit', function(item)
         Meldonin()
     elseif item == 'ketamine' then
         Ketamine()
+    elseif item == 'morphine' then
+        morphine()
 	elseif item == 'sj6' then
 		sj6()
-		Wait(95000)
+        Wait(95000)
     end
     Wait(25000) -- HOW LONG THE EFFECT LASTS (25 seconds)
     meldoninEffects = false
