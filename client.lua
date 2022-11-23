@@ -9,7 +9,7 @@ local sj6Effects = false
 -- Effect Functions (You can play around with this if you know what you're doing)
 local function sj6Loop()
     CreateThread(function()
-		local player = PlayerId()
+	local player = PlayerId()
         while true do
             Wait(50)
             if sj6Effects then
@@ -23,7 +23,7 @@ end
 
 local function melLoop()
     CreateThread(function()
-		local player = PlayerId()
+	local player = PlayerId()
         while true do
             Wait(50)
             if meldoninEffects then
@@ -81,6 +81,22 @@ local function discoLoop()
     end)
 end
 
+local function MorphineLoop()
+    CreateThread(function()
+        local player = PlayerPedId()
+        local morphine = 5
+        while true do
+	    Wait(5000)
+	    if morphine > 0 then
+	        morphine = morphine - 1
+                SetEntityHealth(player, GetEntityMaxHealth(player) + 5)
+	    else
+	        break
+	    end
+	end
+    end)
+end
+
 local function Adrenaline()
     local player = PlayerPedId()
     QBCore.Functions.Notify('Adrenaline Stimulant has been taken!')
@@ -129,6 +145,15 @@ local function Ketamine()
     discoLoop()
 end
 
+local function Morphine()
+    Wait(500) 
+    QBCore.Functions.Notify('Morphine has been taken!')
+    AnimpostfxPlay("SuccessFranklin", 0, false)
+    ShakeGameplayCam("DRUNK_SHAKE", 0.3)
+    exports['qb-ambulancejob']:PainKillerLoop(5)
+    MorphineLoop()
+end
+
 -------------
 
 local function munchies()
@@ -171,9 +196,11 @@ RegisterNetEvent('D2D-Stims:stimit', function(item)
         Meldonin()
     elseif item == 'ketamine' then
         Ketamine()
-	elseif item == 'sj6' then
-		sj6()
-		Wait(95000)
+    elseif item == 'morphine' then
+        Morphine()
+    elseif item == 'sj6' then
+	    sj6()
+        Wait(95000)
     end
     Wait(25000) -- HOW LONG THE EFFECT LASTS (25 seconds)
     meldoninEffects = false
@@ -181,7 +208,7 @@ RegisterNetEvent('D2D-Stims:stimit', function(item)
     disco = false
     ketEffects = false
     SendNUIMessage({sound = "heartbeat", volume = 0.6}) 
-    QBCore.Functions.Notify('The effects of the Adrenaline Stimulant have now gone.')
+    QBCore.Functions.Notify('The effects of the Stimulant are now gone.')
     ShakeGameplayCam("DRUNK_SHAKE", 0.0)
     AnimpostfxStopAll()
     if Config.Needs['thirst'] then

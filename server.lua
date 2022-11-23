@@ -1,5 +1,6 @@
 --MADE BY DareToDoyle#3835-- originally
 -- converted by kamui_kody
+-- Made even worse by Friskky#0001
 local QBCore = exports['qb-core']:GetCoreObject()
 
 RegisterNetEvent('QBCore:Server:UpdateObject', function()
