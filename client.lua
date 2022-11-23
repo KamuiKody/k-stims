@@ -197,9 +197,9 @@ RegisterNetEvent('D2D-Stims:stimit', function(item)
     elseif item == 'ketamine' then
         Ketamine()
     elseif item == 'morphine' then
-        morphine()
+        Morphine()
     elseif item == 'sj6' then
-	sj6()
+	    sj6()
         Wait(95000)
     end
     Wait(25000) -- HOW LONG THE EFFECT LASTS (25 seconds)
@@ -208,7 +208,7 @@ RegisterNetEvent('D2D-Stims:stimit', function(item)
     disco = false
     ketEffects = false
     SendNUIMessage({sound = "heartbeat", volume = 0.6}) 
-    QBCore.Functions.Notify('The effects of the Adrenaline Stimulant have now gone.')
+    QBCore.Functions.Notify('The effects of the Stimulant are now gone.')
     ShakeGameplayCam("DRUNK_SHAKE", 0.0)
     AnimpostfxStopAll()
     if Config.Needs['thirst'] then
