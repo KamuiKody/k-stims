@@ -1,24 +1,17 @@
-fx_version 'adamant'
-
+fx_version 'cerulean'
 game 'gta5'
 
-description 'Stim Shots for ESX/ qbcore conversion by kamui kody'
-
 author 'DareToDoyle'
+description 'Stim Shots QBCore conversion by kamui_kody'
+version '1.0.0'
 
 ui_page "ui/index.html"
 
 shared_script 'config.lua'
+client_script 'client/client.lua'
+server_script 'server/server.lua'
 
 files {
 	"ui/index.html",
 	"ui/sounds/*.ogg",
-}
-
-server_scripts {
-	'server.lua',
-}
-
-client_scripts {
-	'client.lua',
 }
